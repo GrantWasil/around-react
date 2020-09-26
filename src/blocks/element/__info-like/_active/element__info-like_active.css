@@ -1,0 +1,13 @@
+@keyframes like-active {
+	from {
+		opacity: .3;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.element__info-like_active {
+	animation: like-active 2s;
+	background-image: url(../../../../images/like_filled.svg);
+}

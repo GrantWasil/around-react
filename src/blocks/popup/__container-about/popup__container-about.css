@@ -1,0 +1,8 @@
+.popup__container-about {
+	border: none;
+	font-size: 14px;
+	line-height: 17px;
+	width: calc(100% - 72px);
+	padding-bottom: 13.34px;
+	margin-left: 36px;
+}

@@ -1,0 +1,14 @@
+.picture__container-close {
+	z-index: 3;
+	position: relative;
+	background-image: url(../../../images/close.svg);
+	left: 100%;
+	bottom: 0px;
+	width: 41px;
+	min-height: 41px;
+	border: none;
+	background-color: transparent;
+	background-size: auto;
+	background-position: center;
+	cursor: pointer;
+}
