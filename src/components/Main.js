@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PopupWithForm from "./PopupWithForm.js";
 import Card from "./Card.js"
 import api from "../utils/Api.js";
 
@@ -17,6 +16,9 @@ function Main(props) {
         setUserDescription(res.about);
         setUserAvatar(res.avatar);
       })
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      })
   }, [])
 
   React.useEffect(() => {
@@ -24,7 +26,10 @@ function Main(props) {
       .then((res) => {
         setCards(res)
       })
-  }, [])
+      .catch((err) => {
+        console.log(`Error: ${err}`);
+      })
+  }, [userName])
 
   return (
     <main>

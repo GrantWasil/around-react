@@ -1,17 +1,21 @@
 import React from 'react';
-import Header from "./components/Header.js"
-import Main from "./components/Main.js"
-import Footer from "./components/Footer.js"
-import PopupWithForm from "./components/PopupWithForm.js"
-import PopupWithImage from "./components/ImagePopup.js"
-import ImagePopup from './components/ImagePopup.js';
+import Header from "./Header.js"
+import Main from "./Main.js"
+import Footer from "./Footer.js"
+import PopupWithForm from "./PopupWithForm.js"
+import ImagePopup from './ImagePopup.js';
 
+
+/**
+ *  Thanks for your feedback Aygul! It looks so much better now that I got rid of those old functions! 
+ *  Pretty sure that I fixed everything that you were looking for. Thanks again!
+ */
 function App() {
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function onEditAvatar() {
     setIsEditAvatarPopupOpen(true);
@@ -26,7 +30,6 @@ function App() {
   }
 
   function handleCardClick(e) {
-    console.log(e)
     setSelectedCard(e)
   }
 
@@ -34,7 +37,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    setSelectedCard();
+    setSelectedCard({});
   }
 
   return (
@@ -48,7 +51,7 @@ function App() {
         handleCardClick={handleCardClick}
       />
 
-      <PopupWithForm name="new" title="New Place" isOpen={isAddPlacePopupOpen}>
+      <PopupWithForm name="new" title="New Place" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
         <fieldset className="popup__field">
           <input className="popup__container-name popup__input" id="name-input" placeholder="Title" type="text" name="name" minLength="2" maxLength="30" required />
           <span className="popup__input-error" id="name-input-error"></span>
@@ -60,12 +63,12 @@ function App() {
       </PopupWithForm>
 
 
-      <PopupWithForm name="delete" title="Are you sure?">
+      <PopupWithForm name="delete" title="Are you sure?" onClose={closeAllPopups}>
         <button className="popup__container-save delete__save" type="submit">Yes</button>
       </PopupWithForm>
 
 
-      <PopupWithForm name="photo" title="Change profile picture" isOpen={isEditAvatarPopupOpen}>
+      <PopupWithForm name="photo" title="Change profile picture" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
         <input className="popup__container-about popup__input" id="photo-input" placeholder="Image URL" name="link" type="URL" required />
         <span className="popup__input-error" id="photo-input-error"></span>
         <button className="popup__container-save delete__save" type="submit">Save</button>
@@ -73,7 +76,7 @@ function App() {
       </PopupWithForm>
 
 
-      <PopupWithForm name="edit" title="Edit Profile" isOpen={isEditProfilePopupOpen}>
+      <PopupWithForm name="edit" title="Edit Profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
         <fieldset className="popup__field">
           <input className="popup__container-name popup__input" id="newName-input" placeholder="Name" type="text" name="text" minLength="2" maxLength="40" required />
           <span className="popup__input-error" id="newName-input-error"></span>
