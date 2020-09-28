@@ -29,7 +29,7 @@ function Main(props) {
       .catch((err) => {
         console.log(`Error: ${err}`);
       })
-  }, [userName])
+  }, [])
 
   return (
     <main>

@@ -5,11 +5,6 @@ import Footer from "./Footer.js"
 import PopupWithForm from "./PopupWithForm.js"
 import ImagePopup from './ImagePopup.js';
 
-
-/**
- *  Thanks for your feedback Aygul! It looks so much better now that I got rid of those old functions! 
- *  Pretty sure that I fixed everything that you were looking for. Thanks again!
- */
 function App() {
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
