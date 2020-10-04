@@ -3,6 +3,7 @@ import Header from "./Header.js"
 import Main from "./Main.js"
 import Footer from "./Footer.js"
 import PopupWithForm from "./PopupWithForm.js"
+import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -47,6 +48,14 @@ function App() {
     setSelectedCard({});
   }
 
+  function handleUpdateUser(name, about) {
+    api.updateProfileData(name, about)
+      .then((res) => {
+        setCurrentUser(res)
+        closeAllPopups();
+      })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
@@ -84,17 +93,8 @@ function App() {
           <button className="popup__close" aria-label="Close" type="reset" onClick={closeAllPopups}></button>
         </PopupWithForm>
 
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 
-        <PopupWithForm name="edit" title="Edit Profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-          <fieldset className="popup__field">
-            <input className="popup__container-name popup__input" id="newName-input" placeholder="Name" type="text" name="text" minLength="2" maxLength="40" required />
-            <span className="popup__input-error" id="newName-input-error"></span>
-            <input className="popup__container-about popup__input" id="newAbout-input" placeholder="About me" type="text" name="about" minLength="2" maxLength="200" required />
-            <span className="popup__input-error" id="newAbout-input-error"></span>
-            <button className="popup__container-save" type="submit">Save</button>
-            <button className="popup__close" aria-label="Close" type="reset" onClick={closeAllPopups}></button>
-          </fieldset>
-        </PopupWithForm>
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 

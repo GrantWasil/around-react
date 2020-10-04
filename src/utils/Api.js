@@ -53,6 +53,12 @@ class Api {
                 name, about
             })
         })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Error: ${res.status}`);
+            });
     }
 
     changeLikeCardStatus(card, likeState) {
