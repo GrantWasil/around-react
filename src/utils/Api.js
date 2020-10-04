@@ -54,6 +54,33 @@ class Api {
             })
         })
     }
+
+    changeLikeCardStatus(card, likeState) {
+        const likeMethod = likeState ? `PUT` : 'DELETE';
+        return fetch(`${this._baseUrl}/cards/likes/${card}`, {
+            method: likeMethod,
+            headers: this._headers,
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Error: ${res.status}`);
+            });
+    }
+
+    deleteCard(card) {
+        return fetch(`${this._baseUrl}/cards/${card}`, {
+            method: "DELETE",
+            headers: this._headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Error: ${res.status}`);
+            });
+    }
 }
 
 
