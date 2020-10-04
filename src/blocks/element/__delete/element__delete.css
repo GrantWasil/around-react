@@ -1,3 +1,5 @@
+@import url('./_hidden/element__delete_hidden.css');
+
 .element__delete {
 	position: absolute;
 	background-image: url(../../../images/trash.svg);
