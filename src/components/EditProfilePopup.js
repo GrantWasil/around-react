@@ -37,8 +37,6 @@ function EditProfilePopup(props) {
                 <span className="popup__input-error" id="newName-input-error"></span>
                 <input className="popup__container-about popup__input" id="newAbout-input" placeholder="About me" type="text" name="about" minLength="2" maxLength="200" required onChange={handleDescriptionChange} value={description}/>
                 <span className="popup__input-error" id="newAbout-input-error"></span>
-                <button className="popup__container-save" type="submit">Save</button>
-                <button className="popup__close" aria-label="Close" type="reset" onClick={props.onClose}></button>
             </fieldset>
       </PopupWithForm>
     )
