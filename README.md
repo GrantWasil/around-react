@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+You can currently access this project at [Around the Us](https://grantwasil.github.io/around-react/)
+
 ## Available Scripts
 
 In the project directory, you can run:
