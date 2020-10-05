@@ -20,22 +20,15 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getInitialCards()
-      .then((res) => {
-        setCards(res)
-      })
-      .catch((err) => {
-        console.log(`Error: ${err}`);
-      })
-  }, [])
-
-  React.useEffect(() => {
-    api.getProfileData()
-      .then((res) => {
-        setCurrentUser(
-          res
-        )
-      })
+    Promise.all([
+      api.getProfileData(),
+      api.getInitialCards()
+    ]).then(([userData, cardsData]) => {
+      setCurrentUser(userData);
+      setCards(cardsData);
+    }).catch((err) => {
+      console.log(`Error: ${err}`);
+    })
   }, [])
 
   function handleCardLike(card) {
@@ -120,29 +113,27 @@ function App() {
           <button className="popup__container-save delete__save" type="submit">Yes</button>
         </PopupWithForm>
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handlePlaceSubmit}/>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handlePlaceSubmit} />
 
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
 
-        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
         <Footer />
-        <template id="element">
-          <div className="element">
-            <button className="element__delete" aria-label="Remove" type="button"></button>
-            <img className="element__image" />
-            <div className="element__info">
-              <h2 className="element__info-name"></h2>
-              <div className="element__info-right">
-                <button className="element__info-like" aria-label="Like" type="button"></button>
-                <p className="element__info-count">1</p>
-              </div>
+        <div className="element">
+          <button className="element__delete" aria-label="Remove" type="button"></button>
+          <img className="element__image" />
+          <div className="element__info">
+            <h2 className="element__info-name"></h2>
+            <div className="element__info-right">
+              <button className="element__info-like" aria-label="Like" type="button"></button>
+              <p className="element__info-count">1</p>
             </div>
           </div>
-        </template>
+        </div>
       </div>
     </CurrentUserContext.Provider>
   );
