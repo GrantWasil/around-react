@@ -123,17 +123,6 @@ function App() {
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
         <Footer />
-        <div className="element">
-          <button className="element__delete" aria-label="Remove" type="button"></button>
-          <img className="element__image" />
-          <div className="element__info">
-            <h2 className="element__info-name"></h2>
-            <div className="element__info-right">
-              <button className="element__info-like" aria-label="Like" type="button"></button>
-              <p className="element__info-count">1</p>
-            </div>
-          </div>
-        </div>
       </div>
     </CurrentUserContext.Provider>
   );
