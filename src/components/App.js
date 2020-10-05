@@ -4,6 +4,7 @@ import Main from "./Main.js"
 import Footer from "./Footer.js"
 import PopupWithForm from "./PopupWithForm.js"
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -56,6 +57,14 @@ function App() {
       })
   }
 
+  function handleUpdateAvatar(avatar) {
+    api.updateUserImage(avatar)
+      .then((res) => {
+        setCurrentUser(res)
+        closeAllPopups();
+      })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
@@ -86,12 +95,7 @@ function App() {
         </PopupWithForm>
 
 
-        <PopupWithForm name="photo" title="Change profile picture" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
-          <input className="popup__container-about popup__input" id="photo-input" placeholder="Image URL" name="link" type="URL" required />
-          <span className="popup__input-error" id="photo-input-error"></span>
-          <button className="popup__container-save delete__save" type="submit">Save</button>
-          <button className="popup__close" aria-label="Close" type="reset" onClick={closeAllPopups}></button>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
 

@@ -43,6 +43,12 @@ class Api {
                 avatar
             })
         })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        });
     }
 
     updateProfileData(name, about) {
@@ -53,12 +59,12 @@ class Api {
                 name, about
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`);
-            });
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
+            return Promise.reject(`Error: ${res.status}`);
+        });
     }
 
     changeLikeCardStatus(card, likeState) {
